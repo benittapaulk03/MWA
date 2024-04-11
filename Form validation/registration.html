@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Form</title>
+<script>
+function validateForm() {
+    var userId = document.forms["registrationForm"]["userId"].value;
+    var password = document.forms["registrationForm"]["password"].value;
+    var name = document.forms["registrationForm"]["name"].value;
+    var country = document.forms["registrationForm"]["country"].value;
+    var zipCode = document.forms["registrationForm"]["zipCode"].value;
+    var email = document.forms["registrationForm"]["email"].value;
+    var sex = document.forms["registrationForm"]["sex"].value;
+    var language = document.forms["registrationForm"]["language"].value;
+
+    if (userId == "" || userId.length < 5 || userId.length > 12) {
+        alert("User ID must be between 5 and 12 characters");
+        return false;
+    }
+    if (password == "" || password.length < 7 || password.length > 12) {
+        alert("Password must be between 7 and 12 characters");
+        return false;
+    }
+    if (!/^[a-zA-Z ]+$/.test(name)) {
+        alert("Name must contain only alphabets");
+        return false;
+    }
+    if (country == "") {
+        alert("Please select a country");
+        return false;
+    }
+    if (zipCode == "" || isNaN(zipCode)) {
+        alert("Zip code must be a number");
+        return false;
+    }
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        alert("Invalid email address");
+        return false;
+    }
+    if (sex !== "Male" && sex !== "Female") {
+        alert("Please select your gender");
+        return false;
+    }
+    if (language !== "English" && language !== "Non-English") {
+        alert("Please select your language");
+        return false;
+    }
+    return true;
+}
+</script>
+<style>
+label {
+    display: inline-block;
+    width: 150px;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"],
+select,
+textarea {
+    width: 200px;
+}
+</style>
+</head>
+<body>
+
+<h2>Registration Form</h2>
+
+<form name="registrationForm" onsubmit="return validateForm()">
+    <label for="userId">User ID:</label>
+    <input type="text" id="userId" name="userId" placeholder="5-12 characters only" ><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="7-12 characters only" ><br><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" ><br><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address"></textarea><br><br>
+
+    <label for="country">Country:</label>
+    <select id="country" name="country" >
+        <option value= "" disabled selected>Please select a country</option>
+        <option>India</option>
+        <option>USA</option>
+        <option>UAE</option>
+        <option>Japan</option>
+        <option>China</option>
+    </select><br><br>
+
+    <label for="zipCode">Zip Code:</label>
+    <input type="text" id="zipCode" name="zipCode" ><br><br>
+
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" ><br><br>
+
+    <label for="sex">Sex:</label>
+    <input type="radio" id="male" name="sex" value="Male" >
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="sex" value="Female" >
+    <label for="female">Female</label><br><br>
+
+    <label for="language">Language:</label>
+    <input type="radio" id="english" name="language" value="English" >
+    <label for="english">English</label>
+    <input type="radio" id="nonEnglish" name="language" value="Non-English" >
+    <label for="nonEnglish">Non-English</label><br><br>
+
+    <label for="about">About:</label>
+    <textarea id="about" name="about"></textarea><br><br>
+
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
